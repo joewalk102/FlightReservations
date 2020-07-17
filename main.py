@@ -1,6 +1,6 @@
 from lib.menu import Menu
-from lib.commands import res_menu
-from lib.commands import flight_menu
+from lib.cli import res_menu
+from lib.cli import flight_menu
 
 menu = Menu("Main Menu")
 menu.new_option("r", "Reservations", res_menu.prompt)

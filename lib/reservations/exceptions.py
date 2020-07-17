@@ -1,0 +1,3 @@
+class ReservationNotFound(Exception):
+    pass
+
