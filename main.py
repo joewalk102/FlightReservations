@@ -1,6 +1,6 @@
 from lib.menu import Menu
-from lib.cli import res_menu
-from lib.cli import flight_menu
+from lib.cli.reservations.menu import res_menu
+from lib.cli.flights.menu import flight_menu
 
 menu = Menu("Main Menu")
 menu.new_option("r", "Reservations", res_menu.prompt)
@@ -16,5 +16,5 @@ def main():
     print("\n\nExiting...\n\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

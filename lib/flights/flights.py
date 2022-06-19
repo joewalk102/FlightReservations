@@ -1,4 +1,6 @@
 from .exceptions import FlightNotFound
+from ..exceptions import ManyFoundWhenOneExpected
+
 
 class Flight:
     _all_flights = list()
@@ -32,14 +34,18 @@ class Flight:
         return cls(flight_no, origin, dest)
 
     @classmethod
-    def edit_flight(cls, flight_no, origin, dest, new_number=None, new_origin=None, new_dest=None):
+    def edit_flight(
+        cls, flight_no, origin, dest, new_number=None, new_origin=None, new_dest=None
+    ):
         results = cls.search(flight_no, origin, dest)
         if not results:
             raise FlightNotFound
+        elif len(results) > 1:
+            raise ManyFoundWhenOneExpected
         flight = results[0]
         flight.number = flight.number if new_number is None else new_number
         flight.origin = flight.origin if new_origin is None else new_origin
-        flight.destination = flight.destination if new_origin is None else new_origin
+        flight.destination = flight.destination if new_dest is None else new_dest
         return flight
 
     @classmethod

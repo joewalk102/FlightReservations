@@ -1,5 +1,5 @@
 class MenuOption:
-    """ Menu option, including option, help text, and function"""
+    """Menu option, including option, help text, and function"""
 
     def __init__(self, option, text, function=None):
         self.option = option
@@ -8,7 +8,7 @@ class MenuOption:
 
 
 class Menu:
-    """ CLI Menu Options """
+    """CLI Menu Options"""
 
     def __init__(self, menu_name):
         self._stale_text = True
@@ -16,16 +16,15 @@ class Menu:
         self.name = menu_name
         self.options = {"x": MenuOption("x", "Exit")}
 
+    def __str__(self):
+        return self.menu_text
+
     def new_option(self, option, text, function=None):
         """
         Add a new option to the menu.
         """
         self._stale_text = True
-        self.options[option] = MenuOption(
-            option=option,
-            text=text,
-            function=function
-        )
+        self.options[option] = MenuOption(option=option, text=text, function=function)
 
     def edit_option(self, option: str, text: str = None, function=None):
         """
@@ -53,7 +52,6 @@ class Menu:
             self._stale_text = False
         return self.text
 
-
     def get_action(self, option: str):
         """
         Get the action associated with the menu option
@@ -65,7 +63,7 @@ class Menu:
 
     def prompt(self):
         while True:
-            print(self.menu_text)
+            print(self)
             selection = input("Enter Option:").strip().lower()
             action = self.get_action(selection)
             if isinstance(action, str) and action == "x":

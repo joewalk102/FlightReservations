@@ -1,0 +1,2 @@
+class ManyFoundWhenOneExpected(Exception):
+    pass

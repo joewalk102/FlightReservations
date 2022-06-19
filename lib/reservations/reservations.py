@@ -2,6 +2,7 @@ from typing import Optional
 from lib.menu import Menu
 from .exceptions import ReservationNotFound
 
+
 class Reservation:
     _all_reservations = list()
 
@@ -37,7 +38,9 @@ class Reservation:
             raise ReservationNotFound
         booking = results[0]
         booking.flight = booking.flight if new_flight is None else new_flight
-        booking.passenger = booking.passenger if new_passenger is None else new_passenger
+        booking.passenger = (
+            booking.passenger if new_passenger is None else new_passenger
+        )
         return booking
 
     @classmethod
